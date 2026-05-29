@@ -1,0 +1,682 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0A0000012C00000000000000 /* CrochetStepAssistantApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0000022C00000000000000 /* CrochetStepAssistantApp.swift */; };
+		0A0000032C00000000000000 /* ProjectHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0000042C00000000000000 /* ProjectHomeView.swift */; };
+		0A0000052C00000000000000 /* CrochetStepAssistantSmokeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0000062C00000000000000 /* CrochetStepAssistantSmokeTests.swift */; };
+		0B0000012C00000000000000 /* CrochetProjectPackageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0000022C00000000000000 /* CrochetProjectPackageTests.swift */; };
+		0B0000042C00000000000000 /* CrochetEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0000052C00000000000000 /* CrochetEnums.swift */; };
+		0B0000062C00000000000000 /* CrochetModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0000072C00000000000000 /* CrochetModels.swift */; };
+		0B0000082C00000000000000 /* CrochetProjectPackage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0000092C00000000000000 /* CrochetProjectPackage.swift */; };
+		0C0000012C00000000000000 /* NotationDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0000022C00000000000000 /* NotationDictionary.swift */; };
+		0C0000032C00000000000000 /* CrochetTokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0000042C00000000000000 /* CrochetTokenizer.swift */; };
+		0C0000052C00000000000000 /* CrochetParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0000062C00000000000000 /* CrochetParser.swift */; };
+		0C0000072C00000000000000 /* CrochetTokenizerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0000082C00000000000000 /* CrochetTokenizerTests.swift */; };
+		0C0000092C00000000000000 /* CrochetParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C00000A2C00000000000000 /* CrochetParserTests.swift */; };
+		0D0000012C00000000000000 /* SwiftDataModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D0000022C00000000000000 /* SwiftDataModels.swift */; };
+		0D0000032C00000000000000 /* CrochetProjectRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D0000042C00000000000000 /* CrochetProjectRepository.swift */; };
+		0D0000052C00000000000000 /* SwiftDataProjectRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D0000062C00000000000000 /* SwiftDataProjectRepository.swift */; };
+		0D0000072C00000000000000 /* SwiftDataProjectRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D0000082C00000000000000 /* SwiftDataProjectRepositoryTests.swift */; };
+		0E0000012C00000000000000 /* AssetStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0000022C00000000000000 /* AssetStore.swift */; };
+		0E0000032C00000000000000 /* AssetStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0000042C00000000000000 /* AssetStoreTests.swift */; };
+		0F0000012C00000000000000 /* OCRService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0000022C00000000000000 /* OCRService.swift */; };
+		0F0000032C00000000000000 /* OCRServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0000042C00000000000000 /* OCRServiceTests.swift */; };
+		100000012C00000000000000 /* CrochetProjectExporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000022C00000000000000 /* CrochetProjectExporter.swift */; };
+		100000032C00000000000000 /* CrochetProjectExporterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000042C00000000000000 /* CrochetProjectExporterTests.swift */; };
+		110000012C00000000000000 /* ImportCropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110000022C00000000000000 /* ImportCropView.swift */; };
+		110000032C00000000000000 /* ParseReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110000042C00000000000000 /* ParseReviewView.swift */; };
+		110000052C00000000000000 /* ExecutionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110000062C00000000000000 /* ExecutionView.swift */; };
+		120000012C00000000000000 /* CrochetLiveActivityAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120000022C00000000000000 /* CrochetLiveActivityAttributes.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		0A0000072C00000000000000 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0A0000082C00000000000000 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0A0000092C00000000000000;
+			remoteInfo = CrochetStepAssistant;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0A00000A2C00000000000000 /* CrochetStepAssistant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CrochetStepAssistant.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A00000B2C00000000000000 /* CrochetStepAssistantTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CrochetStepAssistantTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A0000022C00000000000000 /* CrochetStepAssistantApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrochetStepAssistantApp.swift; sourceTree = "<group>"; };
+		0A0000042C00000000000000 /* ProjectHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectHomeView.swift; sourceTree = "<group>"; };
+		0A0000062C00000000000000 /* CrochetStepAssistantSmokeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrochetStepAssistantSmokeTests.swift; sourceTree = "<group>"; };
+		0B0000022C00000000000000 /* CrochetProjectPackageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrochetProjectPackageTests.swift; sourceTree = "<group>"; };
+		0B0000052C00000000000000 /* CrochetEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrochetEnums.swift; sourceTree = "<group>"; };
+		0B0000072C00000000000000 /* CrochetModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrochetModels.swift; sourceTree = "<group>"; };
+		0B0000092C00000000000000 /* CrochetProjectPackage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrochetProjectPackage.swift; sourceTree = "<group>"; };
+		0C0000022C00000000000000 /* NotationDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotationDictionary.swift; sourceTree = "<group>"; };
+		0C0000042C00000000000000 /* CrochetTokenizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrochetTokenizer.swift; sourceTree = "<group>"; };
+		0C0000062C00000000000000 /* CrochetParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrochetParser.swift; sourceTree = "<group>"; };
+		0C0000082C00000000000000 /* CrochetTokenizerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrochetTokenizerTests.swift; sourceTree = "<group>"; };
+		0C00000A2C00000000000000 /* CrochetParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrochetParserTests.swift; sourceTree = "<group>"; };
+		0D0000022C00000000000000 /* SwiftDataModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftDataModels.swift; sourceTree = "<group>"; };
+		0D0000042C00000000000000 /* CrochetProjectRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrochetProjectRepository.swift; sourceTree = "<group>"; };
+		0D0000062C00000000000000 /* SwiftDataProjectRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftDataProjectRepository.swift; sourceTree = "<group>"; };
+		0D0000082C00000000000000 /* SwiftDataProjectRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftDataProjectRepositoryTests.swift; sourceTree = "<group>"; };
+		0E0000022C00000000000000 /* AssetStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetStore.swift; sourceTree = "<group>"; };
+		0E0000042C00000000000000 /* AssetStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetStoreTests.swift; sourceTree = "<group>"; };
+		0F0000022C00000000000000 /* OCRService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OCRService.swift; sourceTree = "<group>"; };
+		0F0000042C00000000000000 /* OCRServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OCRServiceTests.swift; sourceTree = "<group>"; };
+		100000022C00000000000000 /* CrochetProjectExporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrochetProjectExporter.swift; sourceTree = "<group>"; };
+		100000042C00000000000000 /* CrochetProjectExporterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrochetProjectExporterTests.swift; sourceTree = "<group>"; };
+		110000022C00000000000000 /* ImportCropView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportCropView.swift; sourceTree = "<group>"; };
+		110000042C00000000000000 /* ParseReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseReviewView.swift; sourceTree = "<group>"; };
+		110000062C00000000000000 /* ExecutionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExecutionView.swift; sourceTree = "<group>"; };
+		120000022C00000000000000 /* CrochetLiveActivityAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrochetLiveActivityAttributes.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0A00000C2C00000000000000 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0A00000D2C00000000000000 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0A00000E2C00000000000000 = {
+			isa = PBXGroup;
+			children = (
+				0A00000F2C00000000000000 /* CrochetStepAssistant */,
+				0A0000102C00000000000000 /* CrochetStepAssistantTests */,
+				0A0000112C00000000000000 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		0A0000112C00000000000000 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0A00000A2C00000000000000 /* CrochetStepAssistant.app */,
+				0A00000B2C00000000000000 /* CrochetStepAssistantTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0A00000F2C00000000000000 /* CrochetStepAssistant */ = {
+			isa = PBXGroup;
+			children = (
+				0A0000022C00000000000000 /* CrochetStepAssistantApp.swift */,
+				0B00000A2C00000000000000 /* Domain */,
+				0C00000B2C00000000000000 /* Parsing */,
+				0D0000092C00000000000000 /* Persistence */,
+				0E0000052C00000000000000 /* Assets */,
+				0F0000052C00000000000000 /* OCR */,
+				120000032C00000000000000 /* LiveActivity */,
+				0A0000122C00000000000000 /* Features */,
+			);
+			path = CrochetStepAssistant;
+			sourceTree = "<group>";
+		};
+		0B00000A2C00000000000000 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				0B0000052C00000000000000 /* CrochetEnums.swift */,
+				0B0000072C00000000000000 /* CrochetModels.swift */,
+				0B0000092C00000000000000 /* CrochetProjectPackage.swift */,
+				100000022C00000000000000 /* CrochetProjectExporter.swift */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		0C00000B2C00000000000000 /* Parsing */ = {
+			isa = PBXGroup;
+			children = (
+				0C0000022C00000000000000 /* NotationDictionary.swift */,
+				0C0000042C00000000000000 /* CrochetTokenizer.swift */,
+				0C0000062C00000000000000 /* CrochetParser.swift */,
+			);
+			path = Parsing;
+			sourceTree = "<group>";
+		};
+		0D0000092C00000000000000 /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				0D0000022C00000000000000 /* SwiftDataModels.swift */,
+				0D0000042C00000000000000 /* CrochetProjectRepository.swift */,
+				0D0000062C00000000000000 /* SwiftDataProjectRepository.swift */,
+			);
+			path = Persistence;
+			sourceTree = "<group>";
+		};
+		0E0000052C00000000000000 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				0E0000022C00000000000000 /* AssetStore.swift */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		0F0000052C00000000000000 /* OCR */ = {
+			isa = PBXGroup;
+			children = (
+				0F0000022C00000000000000 /* OCRService.swift */,
+			);
+			path = OCR;
+			sourceTree = "<group>";
+		};
+		120000032C00000000000000 /* LiveActivity */ = {
+			isa = PBXGroup;
+			children = (
+				120000022C00000000000000 /* CrochetLiveActivityAttributes.swift */,
+			);
+			path = LiveActivity;
+			sourceTree = "<group>";
+		};
+		0A0000122C00000000000000 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				0A0000132C00000000000000 /* ProjectHome */,
+				110000072C00000000000000 /* Import */,
+				110000082C00000000000000 /* Review */,
+				110000092C00000000000000 /* Execution */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		0A0000132C00000000000000 /* ProjectHome */ = {
+			isa = PBXGroup;
+			children = (
+				0A0000042C00000000000000 /* ProjectHomeView.swift */,
+			);
+			path = ProjectHome;
+			sourceTree = "<group>";
+		};
+		110000072C00000000000000 /* Import */ = {
+			isa = PBXGroup;
+			children = (
+				110000022C00000000000000 /* ImportCropView.swift */,
+			);
+			path = Import;
+			sourceTree = "<group>";
+		};
+		110000082C00000000000000 /* Review */ = {
+			isa = PBXGroup;
+			children = (
+				110000042C00000000000000 /* ParseReviewView.swift */,
+			);
+			path = Review;
+			sourceTree = "<group>";
+		};
+		110000092C00000000000000 /* Execution */ = {
+			isa = PBXGroup;
+			children = (
+				110000062C00000000000000 /* ExecutionView.swift */,
+			);
+			path = Execution;
+			sourceTree = "<group>";
+		};
+		0A0000102C00000000000000 /* CrochetStepAssistantTests */ = {
+			isa = PBXGroup;
+			children = (
+				0A0000062C00000000000000 /* CrochetStepAssistantSmokeTests.swift */,
+				0B0000032C00000000000000 /* Domain */,
+				0C00000C2C00000000000000 /* Parsing */,
+				0D00000A2C00000000000000 /* Persistence */,
+				0E0000062C00000000000000 /* Assets */,
+				0F0000062C00000000000000 /* OCR */,
+			);
+			path = CrochetStepAssistantTests;
+			sourceTree = "<group>";
+		};
+		0B0000032C00000000000000 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				0B0000022C00000000000000 /* CrochetProjectPackageTests.swift */,
+				100000042C00000000000000 /* CrochetProjectExporterTests.swift */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		0C00000C2C00000000000000 /* Parsing */ = {
+			isa = PBXGroup;
+			children = (
+				0C0000082C00000000000000 /* CrochetTokenizerTests.swift */,
+				0C00000A2C00000000000000 /* CrochetParserTests.swift */,
+			);
+			path = Parsing;
+			sourceTree = "<group>";
+		};
+		0D00000A2C00000000000000 /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				0D0000082C00000000000000 /* SwiftDataProjectRepositoryTests.swift */,
+			);
+			path = Persistence;
+			sourceTree = "<group>";
+		};
+		0E0000062C00000000000000 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				0E0000042C00000000000000 /* AssetStoreTests.swift */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		0F0000062C00000000000000 /* OCR */ = {
+			isa = PBXGroup;
+			children = (
+				0F0000042C00000000000000 /* OCRServiceTests.swift */,
+			);
+			path = OCR;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		0A0000092C00000000000000 /* CrochetStepAssistant */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0A0000142C00000000000000 /* Build configuration list for PBXNativeTarget "CrochetStepAssistant" */;
+			buildPhases = (
+				0A0000152C00000000000000 /* Sources */,
+				0A00000C2C00000000000000 /* Frameworks */,
+				0A0000162C00000000000000 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CrochetStepAssistant;
+			productName = CrochetStepAssistant;
+			productReference = 0A00000A2C00000000000000 /* CrochetStepAssistant.app */;
+			productType = "com.apple.product-type.application";
+		};
+		0A0000172C00000000000000 /* CrochetStepAssistantTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0A0000182C00000000000000 /* Build configuration list for PBXNativeTarget "CrochetStepAssistantTests" */;
+			buildPhases = (
+				0A0000192C00000000000000 /* Sources */,
+				0A00000D2C00000000000000 /* Frameworks */,
+				0A00001A2C00000000000000 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0A00001B2C00000000000000 /* PBXTargetDependency */,
+			);
+			name = CrochetStepAssistantTests;
+			productName = CrochetStepAssistantTests;
+			productReference = 0A00000B2C00000000000000 /* CrochetStepAssistantTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0A0000082C00000000000000 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1640;
+				LastUpgradeCheck = 1640;
+				TargetAttributes = {
+					0A0000092C00000000000000 = {
+						CreatedOnToolsVersion = 16.4;
+					};
+					0A0000172C00000000000000 = {
+						CreatedOnToolsVersion = 16.4;
+						TestTargetID = 0A0000092C00000000000000;
+					};
+				};
+			};
+			buildConfigurationList = 0A00001C2C00000000000000 /* Build configuration list for PBXProject "CrochetStepAssistant" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 0A00000E2C00000000000000;
+			productRefGroup = 0A0000112C00000000000000 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				0A0000092C00000000000000 /* CrochetStepAssistant */,
+				0A0000172C00000000000000 /* CrochetStepAssistantTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		0A0000162C00000000000000 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0A00001A2C00000000000000 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0A0000152C00000000000000 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0B0000042C00000000000000 /* CrochetEnums.swift in Sources */,
+				0A0000012C00000000000000 /* CrochetStepAssistantApp.swift in Sources */,
+				0C0000052C00000000000000 /* CrochetParser.swift in Sources */,
+				0B0000062C00000000000000 /* CrochetModels.swift in Sources */,
+				0C0000012C00000000000000 /* NotationDictionary.swift in Sources */,
+				0D0000012C00000000000000 /* SwiftDataModels.swift in Sources */,
+				0D0000032C00000000000000 /* CrochetProjectRepository.swift in Sources */,
+				0D0000052C00000000000000 /* SwiftDataProjectRepository.swift in Sources */,
+				0E0000012C00000000000000 /* AssetStore.swift in Sources */,
+				0F0000012C00000000000000 /* OCRService.swift in Sources */,
+				100000012C00000000000000 /* CrochetProjectExporter.swift in Sources */,
+				120000012C00000000000000 /* CrochetLiveActivityAttributes.swift in Sources */,
+				110000012C00000000000000 /* ImportCropView.swift in Sources */,
+				0A0000032C00000000000000 /* ProjectHomeView.swift in Sources */,
+				110000032C00000000000000 /* ParseReviewView.swift in Sources */,
+				0C0000032C00000000000000 /* CrochetTokenizer.swift in Sources */,
+				110000052C00000000000000 /* ExecutionView.swift in Sources */,
+				0B0000082C00000000000000 /* CrochetProjectPackage.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0A0000192C00000000000000 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0A0000052C00000000000000 /* CrochetStepAssistantSmokeTests.swift in Sources */,
+				0C0000092C00000000000000 /* CrochetParserTests.swift in Sources */,
+				0B0000012C00000000000000 /* CrochetProjectPackageTests.swift in Sources */,
+				0C0000072C00000000000000 /* CrochetTokenizerTests.swift in Sources */,
+				0D0000072C00000000000000 /* SwiftDataProjectRepositoryTests.swift in Sources */,
+				0E0000032C00000000000000 /* AssetStoreTests.swift in Sources */,
+				0F0000032C00000000000000 /* OCRServiceTests.swift in Sources */,
+				100000032C00000000000000 /* CrochetProjectExporterTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		0A00001B2C00000000000000 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0A0000092C00000000000000 /* CrochetStepAssistant */;
+			targetProxy = 0A0000072C00000000000000 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		0A00001D2C00000000000000 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		0A00001E2C00000000000000 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		0A00001F2C00000000000000 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.CrochetStepAssistant;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		0A0000202C00000000000000 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.CrochetStepAssistant;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		0A0000212C00000000000000 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.CrochetStepAssistantTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CrochetStepAssistant.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CrochetStepAssistant";
+			};
+			name = Debug;
+		};
+		0A0000222C00000000000000 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.CrochetStepAssistantTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CrochetStepAssistant.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CrochetStepAssistant";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0A00001C2C00000000000000 /* Build configuration list for PBXProject "CrochetStepAssistant" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0A00001D2C00000000000000 /* Debug */,
+				0A00001E2C00000000000000 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0A0000142C00000000000000 /* Build configuration list for PBXNativeTarget "CrochetStepAssistant" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0A00001F2C00000000000000 /* Debug */,
+				0A0000202C00000000000000 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0A0000182C00000000000000 /* Build configuration list for PBXNativeTarget "CrochetStepAssistantTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0A0000212C00000000000000 /* Debug */,
+				0A0000222C00000000000000 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0A0000082C00000000000000 /* Project object */;
+}
