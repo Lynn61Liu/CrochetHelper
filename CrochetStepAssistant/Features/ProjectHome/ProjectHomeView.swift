@@ -12,6 +12,35 @@ enum AppRoute: Hashable {
     case componentExecution(UUID, UUID)
 }
 
+private enum ProjectProgressCalculator {
+    static func completionProgress(for package: CrochetProjectPackage) -> Double {
+        let allStepIds = Set(package.steps.map(\.id))
+        guard !allStepIds.isEmpty else { return 0 }
+
+        var completedStepIds: Set<UUID> = []
+        var completedComponentIds: Set<UUID> = []
+
+        if let progress = package.progress {
+            completedStepIds.formUnion(progress.completedStepIds)
+            completedComponentIds.formUnion(progress.completedComponentIds)
+        }
+        if let executionState = package.executionState {
+            completedStepIds.formUnion(executionState.completedStepIds)
+            completedComponentIds.formUnion(executionState.completedComponentIds)
+        }
+        for state in package.executionStatesByComponentId.values {
+            completedStepIds.formUnion(state.completedStepIds)
+            completedComponentIds.formUnion(state.completedComponentIds)
+        }
+
+        for componentId in completedComponentIds {
+            completedStepIds.formUnion(package.steps.filter { $0.componentId == componentId }.map(\.id))
+        }
+
+        return min(1, Double(completedStepIds.intersection(allStepIds).count) / Double(allStepIds.count))
+    }
+}
+
 struct ProjectHomeView: View {
     @Environment(\.modelContext) private var modelContext
     @EnvironmentObject private var toast: ToastManager
@@ -115,6 +144,14 @@ struct ProjectHomeView: View {
                             initialState: context.package.executionStatesByComponentId[componentId.uuidString] ?? context.package.executionState,
                             onStateChange: { state in
                                 saveExecutionState(state, projectId: projectId)
+                            },
+                            onCompleted: {
+                                toast.show("Subproject complete")
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+                                    if !path.isEmpty {
+                                        path.removeLast()
+                                    }
+                                }
                             }
                         )
                     } else {
@@ -176,19 +213,6 @@ struct ProjectHomeView: View {
                         .font(.title3.weight(.bold))
                         .foregroundStyle(.primary)
                         .lineLimit(2)
-
-                    HStack(spacing: 8) {
-                        Text("Progress")
-                            .font(.subheadline)
-                            .foregroundStyle(.secondary)
-                        HStack(spacing: 3) {
-                            ForEach(0..<5, id: \.self) { index in
-                                Image(systemName: "heart.fill")
-                                    .font(.caption)
-                                    .foregroundStyle(Double(index + 1) / 5 <= progress ? cardColor : Color(.systemGray5))
-                            }
-                        }
-                    }
                 }
 
                 Spacer()
@@ -371,9 +395,7 @@ struct ProjectHomeView: View {
             guard let package = try? JSONDecoder.crochet.decode(CrochetProjectPackage.self, from: project.packageData) else {
                 continue
             }
-            let total = package.steps.count
-            let nextIndex = package.project.currentStepIndex
-            let newProgress = total > 0 ? min(1, max(0, Double(nextIndex) / Double(total))) : 0
+            let newProgress = ProjectProgressCalculator.completionProgress(for: package)
             if abs(project.completionProgress - newProgress) > 0.0001 {
                 project.completionProgress = newProgress
                 didChange = true
@@ -397,14 +419,42 @@ struct ProjectHomeView: View {
 
     private func executionContext(projectId: UUID, componentId: UUID) -> (package: CrochetProjectPackage, steps: [PatternStep], primaryColorHex: String, subprojectColorHex: String?)? {
         guard let stored = fetchStoredProjects().first(where: { $0.id == projectId }),
-              let package = try? JSONDecoder.crochet.decode(CrochetProjectPackage.self, from: stored.packageData),
+              var package = try? JSONDecoder.crochet.decode(CrochetProjectPackage.self, from: stored.packageData),
               let component = package.components.first(where: { $0.id == componentId }) else {
             return nil
         }
+        package = backfillMissingStepTotals(in: package, storedProject: stored)
         let steps = package.steps
             .filter { $0.componentId == componentId }
             .sorted { $0.stepIndex < $1.stepIndex }
         return (package, steps, stored.primaryColorHex, component.primaryColorHex)
+    }
+
+    private func backfillMissingStepTotals(in package: CrochetProjectPackage, storedProject: StoredProject) -> CrochetProjectPackage {
+        let parser = CrochetParser()
+        var updated = package
+        var didChange = false
+
+        updated.steps = updated.steps.map { step in
+            guard step.stitchCountTarget == nil,
+                  let total = parser.targetCount(for: step.rawInstruction) else {
+                return step
+            }
+            var copy = step
+            copy.stitchCountTarget = total
+            didChange = true
+            return copy
+        }
+
+        guard didChange else { return package }
+        do {
+            storedProject.packageData = try JSONEncoder.crochet.encode(updated)
+            try modelContext.save()
+            NotificationCenter.default.post(name: .projectStoreDidChange, object: nil)
+        } catch {
+            toast.show("Step totals update failed")
+        }
+        return updated
     }
 
     private func saveExecutionState(_ state: CrochetExecutionState, projectId: UUID) {
@@ -428,10 +478,22 @@ struct ProjectHomeView: View {
             .filter { $0.componentId == state.currentComponentId }
             .sorted { $0.stepIndex < $1.stepIndex }
             .firstIndex { $0.id == state.currentStepId } ?? 0
+        let aggregateProgress = ProjectProgressCalculator.completionProgress(for: package)
+        package.project.completionState = aggregateProgress >= 1 ? .completed : .inProgress
+        package.components = package.components.map { component in
+            var copy = component
+            if state.completedComponentIds.contains(component.id) {
+                copy.completionState = .completed
+            } else if component.id == state.currentComponentId {
+                copy.completionState = .inProgress
+            }
+            return copy
+        }
         package.project.updatedAt = state.updatedAt
 
         do {
             stored.packageData = try JSONEncoder.crochet.encode(package)
+            stored.completionProgress = aggregateProgress
             stored.updatedAt = state.updatedAt
             try modelContext.save()
             NotificationCenter.default.post(name: .projectStoreDidChange, object: nil)
@@ -945,6 +1007,7 @@ private struct ProjectSubprojectsView: View {
         updated.project.updatedAt = Date()
         do {
             storedProject.packageData = try JSONEncoder.crochet.encode(updated)
+            storedProject.completionProgress = ProjectProgressCalculator.completionProgress(for: updated)
             storedProject.updatedAt = updated.project.updatedAt
             try modelContext.save()
             self.package = updated
@@ -1099,6 +1162,7 @@ private struct AddSubprojectView: View {
 
         do {
             storedProject.packageData = try JSONEncoder.crochet.encode(package)
+            storedProject.completionProgress = ProjectProgressCalculator.completionProgress(for: package)
             storedProject.updatedAt = package.project.updatedAt
             try modelContext.save()
             NotificationCenter.default.post(name: .projectStoreDidChange, object: nil)

@@ -7,6 +7,7 @@ struct ExecutionView: View {
     let subprojectColorHex: String?
     let initialState: CrochetExecutionState?
     let onStateChange: ((CrochetExecutionState) -> Void)?
+    let onCompleted: (() -> Void)?
 
     @State private var currentRowIndex = 0
     @State private var currentSegmentIndex = 0
@@ -15,6 +16,7 @@ struct ExecutionView: View {
     @State private var completedComponentIds: Set<UUID> = []
     @State private var tapScale = 1.0
     @State private var flashSegment = false
+    @State private var didNotifyCompletion = false
 
     private var sortedSteps: [PatternStep] {
         steps.sorted { $0.stepIndex < $1.stepIndex }
@@ -48,7 +50,7 @@ struct ExecutionView: View {
     }
 
     private var rowTotal: Int {
-        currentStep?.stitchCountTarget ?? rowSegments.reduce(0) { $0 + $1.target }
+        currentStep?.stitchCountTarget ?? 0
     }
 
     private var completedInRow: Int {
@@ -61,7 +63,8 @@ struct ExecutionView: View {
         primaryColorHex: String = "#4FA363",
         subprojectColorHex: String? = nil,
         initialState: CrochetExecutionState? = nil,
-        onStateChange: ((CrochetExecutionState) -> Void)? = nil
+        onStateChange: ((CrochetExecutionState) -> Void)? = nil,
+        onCompleted: (() -> Void)? = nil
     ) {
         self.steps = steps
         self.componentId = componentId
@@ -69,6 +72,7 @@ struct ExecutionView: View {
         self.subprojectColorHex = subprojectColorHex
         self.initialState = initialState
         self.onStateChange = onStateChange
+        self.onCompleted = onCompleted
     }
 
     var body: some View {
@@ -80,7 +84,7 @@ struct ExecutionView: View {
                     header
                     segmentCard
                     segmentOverview
-                    rowProgress
+//                    rowProgress
                     bottomActions
                 }
                 .padding(.horizontal, 18)
@@ -88,7 +92,7 @@ struct ExecutionView: View {
             }
         }
         .safeAreaInset(edge: .bottom) {
-            bottomRowSwitcher
+//            bottomRowSwitcher
         }
         .navigationBarTitleDisplayMode(.inline)
         .toolbarBackground(.hidden, for: .navigationBar)
@@ -104,9 +108,31 @@ struct ExecutionView: View {
                 .padding(.vertical, 8)
                 .background(.white.opacity(0.18), in: Capsule())
 
-            Text(currentStep?.roundLabel ?? "R-")
-                .font(.system(size: 62, weight: .bold, design: .rounded))
-                .foregroundStyle(.white)
+            HStack(spacing: 10) {
+                Spacer()
+
+                Text(currentStep?.roundLabel ?? "R-")
+                    .font(.system(size: 62, weight: .bold, design: .rounded))
+                    .foregroundStyle(.white)
+
+                Button {
+                    resetCurrentRow()
+                } label: {
+                    Image(systemName: "arrow.counterclockwise")
+                        .font(.headline.weight(.bold))
+                        .foregroundStyle(.white)
+                        .frame(width: 46, height: 46)
+                        .background(.white.opacity(0.18), in: RoundedRectangle(cornerRadius: 14, style: .continuous))
+                        .overlay {
+                            RoundedRectangle(cornerRadius: 14, style: .continuous)
+                                .stroke(.white.opacity(0.28), lineWidth: 1)
+                        }
+                }
+                .buttonStyle(.plain)
+                .accessibilityLabel("Reset Row")
+
+                Spacer()
+            }
 
             Text("This row total: \(rowTotal) stitches")
                 .font(.headline)
@@ -128,8 +154,8 @@ struct ExecutionView: View {
 
     private var segmentCard: some View {
         VStack(spacing: 24) {
-            Text(currentSegment?.label ?? "-")
-                .font(.title.bold())
+//            Text(currentSegment?.label ?? "-")
+//                .font(.title.bold())
 
             HStack(spacing: 26) {
                 Button {
@@ -186,33 +212,52 @@ struct ExecutionView: View {
     }
 
     private var segmentOverview: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: 8) {
-                ForEach(Array(rowSegments.enumerated()), id: \.element.id) { index, segment in
-                    Button {
-                        withAnimation(.easeInOut(duration: 0.2)) {
-                            currentSegmentIndex = index
+        ScrollViewReader { proxy in
+            GeometryReader { geometry in
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 10) {
+                        ForEach(Array(rowSegments.enumerated()), id: \.element.id) { index, segment in
+                            Button {
+                                withAnimation(.easeInOut(duration: 0.2)) {
+                                    currentSegmentIndex = index
+                                    proxy.scrollTo(segment.id, anchor: .center)
+                                }
+                                persistState()
+                            } label: {
+                                Text(segment.label)
+                                    .font(.headline.weight(index == currentSegmentIndex ? .bold : .regular))
+                                    .foregroundStyle(segmentTextColor(segment, index: index))
+                                    .lineLimit(1)
+                                    .minimumScaleFactor(0.82)
+                                    .padding(.horizontal, 18)
+                                    .frame(minWidth: index == currentSegmentIndex ? 128 : 84, minHeight: 50)
+                                    .background(segmentBackground(segment, index: index), in: Capsule())
+                                    .overlay(
+                                        Capsule()
+                                            .stroke(mainColor.opacity(segment.completed ? 0 : 0.45), lineWidth: 1)
+                                    )
+                                    .scaleEffect(index == currentSegmentIndex ? 1.08 : 0.94)
+                                    .opacity(index == currentSegmentIndex ? 1 : 0.72)
+                                    .shadow(color: index == currentSegmentIndex ? mainColor.opacity(0.28) : .clear, radius: 8, y: 4)
+                            }
+                            .id(segment.id)
+                            .buttonStyle(.plain)
                         }
-                        persistState()
-                    } label: {
-                        Text(segment.label)
-                            .font(.headline.weight(index == currentSegmentIndex ? .bold : .regular))
-                            .foregroundStyle(segmentTextColor(segment, index: index))
-                            .padding(.horizontal, 16)
-                            .frame(minHeight: 48)
-                            .background(segmentBackground(segment, index: index), in: Capsule())
-                            .overlay(
-                                Capsule()
-                                    .stroke(mainColor.opacity(segment.completed ? 0 : 0.45), lineWidth: 1)
-                            )
-                            .scaleEffect(index == currentSegmentIndex ? 1.06 : 1)
-                            .shadow(color: index == currentSegmentIndex ? mainColor.opacity(0.28) : .clear, radius: 8, y: 4)
                     }
-                    .buttonStyle(.plain)
+                    .padding(.horizontal, max((geometry.size.width - 128) / 2, 12))
+                    .padding(.vertical, 10)
+                }
+                .onAppear {
+                    centerCurrentSegment(proxy)
+                }
+                .onChange(of: currentSegmentIndex) { _, _ in
+                    centerCurrentSegment(proxy)
+                }
+                .onChange(of: currentRowIndex) { _, _ in
+                    centerCurrentSegment(proxy)
                 }
             }
-            .padding(.horizontal, 4)
-            .padding(.vertical, 8)
+            .frame(height: 72)
         }
         .padding(.horizontal, 10)
         .background(.white, in: RoundedRectangle(cornerRadius: 18, style: .continuous))
@@ -220,6 +265,13 @@ struct ExecutionView: View {
             RoundedRectangle(cornerRadius: 18, style: .continuous)
                 .stroke(mainColor.opacity(0.45), lineWidth: 1)
         )
+    }
+
+    private func centerCurrentSegment(_ proxy: ScrollViewProxy) {
+        guard rowSegments.indices.contains(currentSegmentIndex) else { return }
+        withAnimation(.easeInOut(duration: 0.2)) {
+            proxy.scrollTo(rowSegments[currentSegmentIndex].id, anchor: .center)
+        }
     }
 
     private var rowProgress: some View {
@@ -238,17 +290,6 @@ struct ExecutionView: View {
                         .fill(progressChunkCompleted(index) ? accentColor : Color(.systemGray5))
                         .frame(height: 12)
                 }
-
-                Button {
-                    resetCurrentRow()
-                } label: {
-                    Image(systemName: "arrow.counterclockwise")
-                        .font(.caption.weight(.bold))
-                        .frame(width: 40, height: 40)
-                        .background(.white.opacity(0.18), in: Circle())
-                }
-                .foregroundStyle(.white)
-                .accessibilityLabel("Reset Row")
             }
         }
         .padding(.vertical, 8)
@@ -256,19 +297,20 @@ struct ExecutionView: View {
     }
 
     private var bottomActions: some View {
-        HStack(spacing: 34) {
+        HStack(spacing: 52) {
             VStack(spacing: 10) {
                 Button {
                     moveRow(by: -1)
                 } label: {
-                    Image(systemName: "chevron.left")
-                        .font(.system(size: 30, weight: .semibold))
-                        .frame(width: 86, height: 86)
-                        .background(.white.opacity(0.92), in: Circle())
-                        .foregroundStyle(.black)
-                        .shadow(color: .black.opacity(0.08), radius: 10, y: 4)
+                    bottomActionIcon(
+                        systemName: "chevron.left",
+                        foreground: .black,
+                        background: .white,
+                        border: Color(.systemGray4)
+                    )
                 }
                 .disabled(currentRowIndex == 0)
+               
                 Text("Previous Row")
                     .font(.headline)
                     .foregroundStyle(.white)
@@ -278,12 +320,12 @@ struct ExecutionView: View {
                 Button {
                     completeRow()
                 } label: {
-                    Image(systemName: "checkmark")
-                        .font(.system(size: 36, weight: .bold))
-                        .frame(width: 98, height: 98)
-                        .background(accentColor, in: Circle())
-                        .foregroundStyle(.white)
-                        .shadow(color: accentColor.opacity(0.35), radius: 18, y: 8)
+                    bottomActionIcon(
+                        systemName: "checkmark",
+                        foreground: .black,
+                        background: .white,
+                        border: Color(.systemGray4)
+                    )
                 }
                 Text("Complete Row")
                     .font(.headline)
@@ -292,6 +334,23 @@ struct ExecutionView: View {
         }
         .frame(maxWidth: .infinity)
         .padding(.top, 12)
+    }
+
+    private func bottomActionIcon(systemName: String, foreground: Color, background: Color, border: Color) -> some View {
+        Image(systemName: systemName)
+            .font(.system(size: 34, weight: .bold))
+            .frame(width: 92, height: 92)
+            .foregroundStyle(foreground)
+            .background(
+                RoundedRectangle(cornerRadius: 22, style: .continuous)
+                    .fill(background.opacity(0.94))
+            )
+            .overlay {
+                RoundedRectangle(cornerRadius: 22, style: .continuous)
+                    .stroke(border, lineWidth: 2)
+            }
+            .shadow(color: .black.opacity(0.18), radius: 0, x: 0, y: 5)
+            .shadow(color: .black.opacity(0.14), radius: 14, x: 0, y: 8)
     }
 
     private var bottomRowSwitcher: some View {
@@ -413,11 +472,14 @@ struct ExecutionView: View {
 
     private func completeRow() {
         guard let currentStep else { return }
+        let isLastRow = currentRowIndex >= sortedSteps.count - 1
+
         for segment in rowSegments {
             segmentCounts[segment.id] = segment.target
         }
         completedStepIds.insert(currentStep.id)
-        if currentRowIndex < sortedSteps.count - 1 {
+
+        if !isLastRow {
             withAnimation(.easeInOut(duration: 0.2)) {
                 currentRowIndex += 1
                 currentSegmentIndex = 0
@@ -426,6 +488,10 @@ struct ExecutionView: View {
             completedComponentIds.insert(componentId)
         }
         persistState()
+
+        if isLastRow {
+            notifyCompletionIfNeeded()
+        }
     }
 
     private func moveRow(by delta: Int) {
@@ -473,6 +539,12 @@ struct ExecutionView: View {
                 updatedAt: Date()
             )
         )
+    }
+
+    private func notifyCompletionIfNeeded() {
+        guard !didNotifyCompletion else { return }
+        didNotifyCompletion = true
+        onCompleted?()
     }
 
     private func segmentBackground(_ segment: CounterSegment, index: Int) -> Color {
